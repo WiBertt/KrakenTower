@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7b18bbe10f443154c89f300e2a9f9c30
+guid: 3a97215bc08ede14dad8d1239592da7e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,11 +106,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 14-FrontAttack2_0
+      name: 16-DownAttack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f48a7d0ee41f7f145a33691b1b698f86
-      internalID: 886793837
+      spriteID: 0d8316ac06f97a342b4a8df189d2f91b
+      internalID: 1407650562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 14-FrontAttack2_1
+      name: 16-DownAttack_1
       rect:
         serializedVersion: 2
         x: 80
@@ -145,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c93ade4a84896214088d97e988a0e9f9
-      internalID: -1585259444
+      spriteID: cdf407c48a2f4a84f97cdb08ddaebb7e
+      internalID: 278871410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 14-FrontAttack2_2
+      name: 16-DownAttack_2
       rect:
         serializedVersion: 2
         x: 160
@@ -166,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41e99f6a68eaaed488693a5fb48703e3
-      internalID: 1348397473
+      spriteID: bd01a2735245b604aa513a031e325f91
+      internalID: 1526191897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 14-FrontAttack2_3
+      name: 16-DownAttack_3
       rect:
         serializedVersion: 2
         x: 240
@@ -187,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c098f175b999eb7428f278b517c5f84b
-      internalID: -1782324876
+      spriteID: 5c3ed6973d64790458b19367773bfa5d
+      internalID: 2034517524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 14-FrontAttack2_4
+      name: 16-DownAttack_4
       rect:
         serializedVersion: 2
         x: 320
@@ -208,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5abc61ecc6f2aac4291e6eb0d37b7dc6
-      internalID: 1764949570
+      spriteID: fb6a26543bb5d4f40a6434fabab43aee
+      internalID: -1499280117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 14-FrontAttack2_5
+      name: 16-DownAttack_5
       rect:
         serializedVersion: 2
         x: 400
@@ -229,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 033f38d376bf47243ad8245c280056ab
-      internalID: 956589290
+      spriteID: c45876d866d1656419a6a38da2fd012b
+      internalID: -714793427
       vertices: []
       indices: 
       edges: []
@@ -246,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      14-FrontAttack2_0: 886793837
-      14-FrontAttack2_1: -1585259444
-      14-FrontAttack2_2: 1348397473
-      14-FrontAttack2_3: -1782324876
-      14-FrontAttack2_4: 1764949570
-      14-FrontAttack2_5: 956589290
+      16-DownAttack_0: 1407650562
+      16-DownAttack_1: 278871410
+      16-DownAttack_2: 1526191897
+      16-DownAttack_3: 2034517524
+      16-DownAttack_4: -1499280117
+      16-DownAttack_5: -714793427
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

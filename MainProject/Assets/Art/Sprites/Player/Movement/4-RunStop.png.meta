@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7338ec1aa7cbfba4aaebf0017bff53dd
+guid: a19bc3b1204d9c44d8628edb8ed525eb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,11 +106,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 3-RunTransition_0
+      name: 4-RunStop_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16a514495aa5391459c40db18ffc0252
-      internalID: 1869336289
+      spriteID: 5357a073974bc9a409ed33c5a22c8ceb
+      internalID: -2076907278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 3-RunTransition_1
+      name: 4-RunStop_1
       rect:
         serializedVersion: 2
         x: 80
@@ -145,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c3d714a6b49b024fb141716ffbd94a9
-      internalID: -1243808897
+      spriteID: d2e9b5f56f237c94d8ef3b3f5d73ae39
+      internalID: -483733517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 3-RunTransition_2
+      name: 4-RunStop_2
       rect:
         serializedVersion: 2
         x: 160
@@ -166,8 +179,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf14ca7b5e0d8e34dbab0cc402c6cd29
-      internalID: -1998453208
+      spriteID: 07860d7f808a8454d90b73caedbd6556
+      internalID: -660339617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4-RunStop_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87bfbe6a568dce04ca83179820b1d7c3
+      internalID: 1860405363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4-RunStop_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 237d269339ffc53429d374c55ef7eefd
+      internalID: -55792370
       vertices: []
       indices: 
       edges: []
@@ -183,9 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      3-RunTransition_0: 1869336289
-      3-RunTransition_1: -1243808897
-      3-RunTransition_2: -1998453208
+      4-RunStop_0: -2076907278
+      4-RunStop_1: -483733517
+      4-RunStop_2: -660339617
+      4-RunStop_3: 1860405363
+      4-RunStop_4: -55792370
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

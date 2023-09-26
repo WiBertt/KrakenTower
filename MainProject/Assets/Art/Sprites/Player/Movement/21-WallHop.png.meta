@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 72b8634b2410f344eba2f12acc76f88b
+guid: a5ded0a95cff10b4f82f8aa05733914a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,11 +106,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 8-DirJump_0
+      name: 21-WallHop_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d2e38aca4f00a44c802a5d5a3b75ba6
-      internalID: 366426696
+      spriteID: 423dd7ca0e51533489ca4c53b655fe95
+      internalID: 1198420327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8-DirJump_1
+      name: 21-WallHop_1
       rect:
         serializedVersion: 2
         x: 80
@@ -145,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b26c40b8d315a954d99120d4cbc93aab
-      internalID: 1847517623
+      spriteID: 5c1a0eb3ab58711449b388681ddff1f4
+      internalID: -1982610242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8-DirJump_2
+      name: 21-WallHop_2
       rect:
         serializedVersion: 2
         x: 160
@@ -166,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7351d97074930714aa919b2645fa1d25
-      internalID: -85741334
+      spriteID: ec2817bbbc1987642b4d3d696820a34d
+      internalID: -114438999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8-DirJump_3
+      name: 21-WallHop_3
       rect:
         serializedVersion: 2
         x: 240
@@ -187,92 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b89a28e8889e6443a2b90cc5675afe4
-      internalID: -217875121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 8-DirJump_4
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b4b5aac8def7b14abe9e821e93d8b03
-      internalID: 640340558
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 8-DirJump_5
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92ac3c0ecd3c01448afc823f75cb23c5
-      internalID: 1717541678
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 8-DirJump_6
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8876d1226da5b248a0df6fe63057acd
-      internalID: 1776199707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 8-DirJump_7
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2d8bb17996d20340b184d646d30b1b5
-      internalID: 1052456277
+      spriteID: 5dca87359fca3414e8b0414d75e5e210
+      internalID: -732361703
       vertices: []
       indices: 
       edges: []
@@ -288,14 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      8-DirJump_0: 366426696
-      8-DirJump_1: 1847517623
-      8-DirJump_2: -85741334
-      8-DirJump_3: -217875121
-      8-DirJump_4: 640340558
-      8-DirJump_5: 1717541678
-      8-DirJump_6: 1776199707
-      8-DirJump_7: 1052456277
+      21-WallHop_0: 1198420327
+      21-WallHop_1: -1982610242
+      21-WallHop_2: -114438999
+      21-WallHop_3: -732361703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

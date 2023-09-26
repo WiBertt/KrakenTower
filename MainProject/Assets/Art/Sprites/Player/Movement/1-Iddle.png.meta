@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc6805d15047a2a49a98624ecd09e119
+guid: fed05f23b8541684cb45df0fbdfe8034
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,11 +106,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 12-Dash_0
+      name: 1-Iddle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 502736ec9f6c2d646a604215cf17f6df
-      internalID: 454553498
+      spriteID: 79aa2a855d4e75c429a1d6a4eb4c3dc1
+      internalID: 919750234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_1
+      name: 1-Iddle_1
       rect:
         serializedVersion: 2
         x: 80
@@ -145,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ff8f14236834be4ab80c716e6bf2394
-      internalID: -1651697593
+      spriteID: cdf8c98731d29424ebef183944b68ddf
+      internalID: -563545235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_2
+      name: 1-Iddle_2
       rect:
         serializedVersion: 2
         x: 160
@@ -166,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc7707f5514449846805c7c828aa6095
-      internalID: 1560024640
+      spriteID: 53c29e4812fccbf44958ad6ea0958655
+      internalID: 616566910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_3
+      name: 1-Iddle_3
       rect:
         serializedVersion: 2
         x: 240
@@ -187,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df34c49eee3144f449fe026aa38e3504
-      internalID: 993694569
+      spriteID: f26a6a474b4e3b2429dcafd031da2798
+      internalID: 1529690550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_4
+      name: 1-Iddle_4
       rect:
         serializedVersion: 2
         x: 320
@@ -208,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10d9368b446bbf241b6a3ac0a54058ff
-      internalID: -450743442
+      spriteID: 3f4bd553bb30c36438b3f543be19183c
+      internalID: 920095128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_5
+      name: 1-Iddle_5
       rect:
         serializedVersion: 2
         x: 400
@@ -229,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c11ea8d928a7fcc4b935475421f6c95f
-      internalID: 1548541371
+      spriteID: 934642ef1a5d9444f9cc756823e23cda
+      internalID: -1634225187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_6
+      name: 1-Iddle_6
       rect:
         serializedVersion: 2
         x: 480
@@ -250,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1ca7a1259d02eb45b0cf60798bf38fc
-      internalID: 458223926
+      spriteID: 3f19e4c6ca6d3604e8423df3f9da8568
+      internalID: -1515702942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_7
+      name: 1-Iddle_7
       rect:
         serializedVersion: 2
         x: 560
@@ -271,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a12038c74ddaa845a68dfb017ee036b
-      internalID: -496744969
+      spriteID: 04d5aea6c2fadcb4887b1441f9323801
+      internalID: -1191883525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_8
+      name: 1-Iddle_8
       rect:
         serializedVersion: 2
         x: 640
@@ -292,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 977c434a053ba364399856410955f955
-      internalID: 877165930
+      spriteID: 496706d3039327346ad9e96df5abdd0f
+      internalID: -1708894267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_9
+      name: 1-Iddle_9
       rect:
         serializedVersion: 2
         x: 720
@@ -313,14 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf9f5b5d68d27bc4eafa651ac9576969
-      internalID: -583456813
+      spriteID: 4e5bade83ce82cb4a97a8ab84a1d87c1
+      internalID: -2011967079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_10
+      name: 1-Iddle_10
       rect:
         serializedVersion: 2
         x: 800
@@ -334,14 +347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc60165e7b874f24d9e4adfc47359d79
-      internalID: -1206554315
+      spriteID: 7f612bfd5f8ede546931a8e8df115be9
+      internalID: -192736435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12-Dash_11
+      name: 1-Iddle_11
       rect:
         serializedVersion: 2
         x: 880
@@ -355,8 +368,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e76ff5e3dea3bd54d84fc5cdff31b313
-      internalID: -1314132251
+      spriteID: beeb9da5a7303854a8c42cb34ed58639
+      internalID: -650216645
       vertices: []
       indices: 
       edges: []
@@ -372,18 +385,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      12-Dash_0: 454553498
-      12-Dash_1: -1651697593
-      12-Dash_10: -1206554315
-      12-Dash_11: -1314132251
-      12-Dash_2: 1560024640
-      12-Dash_3: 993694569
-      12-Dash_4: -450743442
-      12-Dash_5: 1548541371
-      12-Dash_6: 458223926
-      12-Dash_7: -496744969
-      12-Dash_8: 877165930
-      12-Dash_9: -583456813
+      1-Iddle_0: 919750234
+      1-Iddle_1: -563545235
+      1-Iddle_10: -192736435
+      1-Iddle_11: -650216645
+      1-Iddle_2: 616566910
+      1-Iddle_3: 1529690550
+      1-Iddle_4: 920095128
+      1-Iddle_5: -1634225187
+      1-Iddle_6: -1515702942
+      1-Iddle_7: -1191883525
+      1-Iddle_8: -1708894267
+      1-Iddle_9: -2011967079
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

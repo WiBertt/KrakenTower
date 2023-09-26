@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a5ded0a95cff10b4f82f8aa05733914a
+guid: 2e94f4541046811429206c7500852754
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,11 +106,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 21-WallHop_0
+      name: 13-FrontAttack1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 423dd7ca0e51533489ca4c53b655fe95
-      internalID: 1198420327
+      spriteID: b3d46b849cf919443a447bfbd3406985
+      internalID: 1753598020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 21-WallHop_1
+      name: 13-FrontAttack1_1
       rect:
         serializedVersion: 2
         x: 80
@@ -145,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c1a0eb3ab58711449b388681ddff1f4
-      internalID: -1982610242
+      spriteID: 31c3657ea8f8e1447b9e1786bae3f54a
+      internalID: -1429947715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 21-WallHop_2
+      name: 13-FrontAttack1_2
       rect:
         serializedVersion: 2
         x: 160
@@ -166,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec2817bbbc1987642b4d3d696820a34d
-      internalID: -114438999
+      spriteID: 7d9a6b2bf17fd7b4ab6b79e96e656106
+      internalID: -173077216
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 21-WallHop_3
+      name: 13-FrontAttack1_3
       rect:
         serializedVersion: 2
         x: 240
@@ -187,8 +200,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dca87359fca3414e8b0414d75e5e210
-      internalID: -732361703
+      spriteID: bbc2ebf72d4aa2648b93a602dee126de
+      internalID: -1107265328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 13-FrontAttack1_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e11479279baa48d488899f651d0d571f
+      internalID: 1736071598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 13-FrontAttack1_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add75455960ce5c49823ef16035063d7
+      internalID: 88826766
       vertices: []
       indices: 
       edges: []
@@ -204,10 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      21-WallHop_0: 1198420327
-      21-WallHop_1: -1982610242
-      21-WallHop_2: -114438999
-      21-WallHop_3: -732361703
+      13-FrontAttack1_0: 1753598020
+      13-FrontAttack1_1: -1429947715
+      13-FrontAttack1_2: -173077216
+      13-FrontAttack1_3: -1107265328
+      13-FrontAttack1_4: 1736071598
+      13-FrontAttack1_5: 88826766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

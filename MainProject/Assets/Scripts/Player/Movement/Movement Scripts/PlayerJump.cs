@@ -162,6 +162,7 @@ namespace WibertStudio
         public void Jump()
         {
             playerManager.Rb.velocity = new Vector2(playerManager.Rb.velocity.x, jumpForce);
+            playerManager.PlayerMove.ResetMoveSpeed();
             availableJumps--;
             doesJumpNeedToBePressedAgain = true;
             hasJumped = true;
@@ -189,7 +190,7 @@ namespace WibertStudio
 
         private void ApexModifier()
         {
-            if (apexModifierTimer > 0)
+            if (apexModifierTimer > 0 && !playerManager.PlayerMove.isAttackMoveSlowActive)
             {
                 apexModifierTimer -= Time.deltaTime;
                 isApexModifierComplete = false;

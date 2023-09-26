@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fed05f23b8541684cb45df0fbdfe8034
+guid: e1bcd2bc61c94c84b9df8a0a96b0a2f4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,11 +106,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1-Iddle_0
+      name: 7-Landing_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79aa2a855d4e75c429a1d6a4eb4c3dc1
-      internalID: 919750234
+      spriteID: 02fee05f1e27ae64384e209b52a095c4
+      internalID: 1853897939
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1-Iddle_1
+      name: 7-Landing_1
       rect:
         serializedVersion: 2
         x: 80
@@ -145,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdf8c98731d29424ebef183944b68ddf
-      internalID: -563545235
+      spriteID: 6a43cac1a30f77a4c9e1e87301ab964a
+      internalID: 1614351848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1-Iddle_2
+      name: 7-Landing_2
       rect:
         serializedVersion: 2
         x: 160
@@ -166,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53c29e4812fccbf44958ad6ea0958655
-      internalID: 616566910
+      spriteID: f3b0ca4c13cc9f046ad596665de14d3d
+      internalID: 91085785
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1-Iddle_3
+      name: 7-Landing_3
       rect:
         serializedVersion: 2
         x: 240
@@ -187,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f26a6a474b4e3b2429dcafd031da2798
-      internalID: 1529690550
+      spriteID: 16b890b7b85287140bda31df5b35c8cc
+      internalID: 1667805235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1-Iddle_4
+      name: 7-Landing_4
       rect:
         serializedVersion: 2
         x: 320
@@ -208,155 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f4bd553bb30c36438b3f543be19183c
-      internalID: 920095128
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1-Iddle_5
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 934642ef1a5d9444f9cc756823e23cda
-      internalID: -1634225187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1-Iddle_6
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f19e4c6ca6d3604e8423df3f9da8568
-      internalID: -1515702942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1-Iddle_7
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 04d5aea6c2fadcb4887b1441f9323801
-      internalID: -1191883525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1-Iddle_8
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 496706d3039327346ad9e96df5abdd0f
-      internalID: -1708894267
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1-Iddle_9
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e5bade83ce82cb4a97a8ab84a1d87c1
-      internalID: -2011967079
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1-Iddle_10
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f612bfd5f8ede546931a8e8df115be9
-      internalID: -192736435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1-Iddle_11
-      rect:
-        serializedVersion: 2
-        x: 880
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: beeb9da5a7303854a8c42cb34ed58639
-      internalID: -650216645
+      spriteID: fa1470e0a88cf16419d84ce729d54c51
+      internalID: 2028196454
       vertices: []
       indices: 
       edges: []
@@ -372,18 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      1-Iddle_0: 919750234
-      1-Iddle_1: -563545235
-      1-Iddle_10: -192736435
-      1-Iddle_11: -650216645
-      1-Iddle_2: 616566910
-      1-Iddle_3: 1529690550
-      1-Iddle_4: 920095128
-      1-Iddle_5: -1634225187
-      1-Iddle_6: -1515702942
-      1-Iddle_7: -1191883525
-      1-Iddle_8: -1708894267
-      1-Iddle_9: -2011967079
+      7-Landing_0: 1853897939
+      7-Landing_1: 1614351848
+      7-Landing_2: 91085785
+      7-Landing_3: 1667805235
+      7-Landing_4: 2028196454
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

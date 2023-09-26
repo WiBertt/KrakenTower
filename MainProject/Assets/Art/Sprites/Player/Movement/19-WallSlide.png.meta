@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e94f4541046811429206c7500852754
+guid: 1963a43e8cb47a14d9f647fd743997e9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,17 +106,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 13-FrontAttack1_0
+      name: 19-WallSlide_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 80
-        height: 80
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3d46b849cf919443a447bfbd3406985
-      internalID: 1753598020
+      spriteID: bed31cecf3160d247a67f9ea02d7ea55
+      internalID: 2105193707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 13-FrontAttack1_1
+      name: 19-WallSlide_1
       rect:
         serializedVersion: 2
         x: 80
         y: 0
         width: 80
-        height: 80
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31c3657ea8f8e1447b9e1786bae3f54a
-      internalID: -1429947715
+      spriteID: bf83119e358b47a4da8a69e6c5b87b94
+      internalID: 187936577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 13-FrontAttack1_2
+      name: 19-WallSlide_2
       rect:
         serializedVersion: 2
         x: 160
         y: 0
         width: 80
-        height: 80
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d9a6b2bf17fd7b4ab6b79e96e656106
-      internalID: -173077216
+      spriteID: 28f93f2a0d1fe614eba8e107e17da634
+      internalID: 666659410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 13-FrontAttack1_3
+      name: 19-WallSlide_3
       rect:
         serializedVersion: 2
         x: 240
         y: 0
         width: 80
-        height: 80
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbc2ebf72d4aa2648b93a602dee126de
-      internalID: -1107265328
+      spriteID: 103ec78050a24f24cbf3b6db5ae6d0c2
+      internalID: 1512667105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 13-FrontAttack1_4
+      name: 19-WallSlide_4
       rect:
         serializedVersion: 2
         x: 320
         y: 0
         width: 80
-        height: 80
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e11479279baa48d488899f651d0d571f
-      internalID: 1736071598
+      spriteID: b2dd5ac4117db8447954e31803a42884
+      internalID: -1889694515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 13-FrontAttack1_5
+      name: 19-WallSlide_5
       rect:
         serializedVersion: 2
         x: 400
         y: 0
         width: 80
-        height: 80
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +242,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: add75455960ce5c49823ef16035063d7
-      internalID: 88826766
+      spriteID: 95ed0f2ede4aabb4791856aaa944ac0b
+      internalID: 1140953545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 19-WallSlide_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 80
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c08676a65ebd3e4bb50f058139e3cce
+      internalID: 86590856
       vertices: []
       indices: 
       edges: []
@@ -246,12 +280,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      13-FrontAttack1_0: 1753598020
-      13-FrontAttack1_1: -1429947715
-      13-FrontAttack1_2: -173077216
-      13-FrontAttack1_3: -1107265328
-      13-FrontAttack1_4: 1736071598
-      13-FrontAttack1_5: 88826766
+      19-WallSlide_0: 2105193707
+      19-WallSlide_1: 187936577
+      19-WallSlide_2: 666659410
+      19-WallSlide_3: 1512667105
+      19-WallSlide_4: -1889694515
+      19-WallSlide_5: 1140953545
+      19-WallSlide_6: 86590856
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -153,51 +153,19 @@ public class PlayerAnimator : MonoBehaviour
         isRunStopping = false;
     }
 
-    public void SetAttackAnimation(string dir)
+    public void SetAttackAnimation()
     {
         int rng;
-
-        switch (dir)
+        rng = Random.Range(1, 3);
+        if (rng == 1)
         {
-            // Idle
-            case "fwd":
-                rng = Random.Range(1, 3);
-                if (rng == 1)
-                {
-                    animator.SetInteger("Attack", 1);
-                    StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("FrontAttack1")));
-                }
-                else if (rng == 2)
-                {
-                    animator.SetInteger("Attack", 2);
-                    StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("FrontAttack2")));
-                }
-                break;
-            // Moving 
-            case "move fwd":
-                rng = Random.Range(3, 5);
-                print(rng);
-                if (rng == 3)
-                {
-                    animator.SetInteger("Attack", 3);
-                    StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("MovingAttack1")));
-                }
-                else if (rng == 4)
-                {
-                    animator.SetInteger("Attack", 4);
-                    StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("MovingAttack2")));
-                }
-                break;
-            // Up
-            case "up":
-                animator.SetInteger("Attack", 5);
-                StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("UpAttack")));
-                break;
-            // Down
-            case "down":
-                animator.SetInteger("Attack", 6);
-                StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("DownAttack")));
-                break;
+            animator.SetInteger("Attack", 1);
+            StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("FrontAttack1")));
+        }
+        else if (rng == 2)
+        {
+            animator.SetInteger("Attack", 2);
+            StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("FrontAttack2")));
         }
     }
 

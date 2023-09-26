@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3a97215bc08ede14dad8d1239592da7e
+guid: 38170176346377f4bb2cc31511b5d4d0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,11 +106,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 16-DownAttack_0
+      name: 9-DirFall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d8316ac06f97a342b4a8df189d2f91b
-      internalID: 1407650562
+      spriteID: eb72a24ad86bedb4baf7f2ddad90590f
+      internalID: -1755285010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16-DownAttack_1
+      name: 9-DirFall_1
       rect:
         serializedVersion: 2
         x: 80
@@ -145,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdf407c48a2f4a84f97cdb08ddaebb7e
-      internalID: 278871410
+      spriteID: 251eef7cd562e0046a40f1994b76f7b2
+      internalID: 274058365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16-DownAttack_2
+      name: 9-DirFall_2
       rect:
         serializedVersion: 2
         x: 160
@@ -166,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd01a2735245b604aa513a031e325f91
-      internalID: 1526191897
+      spriteID: 14c6db2d202fc0b4ea48fdbf0009b319
+      internalID: -2142896311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16-DownAttack_3
+      name: 9-DirFall_3
       rect:
         serializedVersion: 2
         x: 240
@@ -187,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c3ed6973d64790458b19367773bfa5d
-      internalID: 2034517524
+      spriteID: 956afb5ffb73c8a4989f0c84f71e51ac
+      internalID: 1894807104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16-DownAttack_4
+      name: 9-DirFall_4
       rect:
         serializedVersion: 2
         x: 320
@@ -208,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb6a26543bb5d4f40a6434fabab43aee
-      internalID: -1499280117
+      spriteID: 7e41060c533cee74b9fbb43ba56a55f7
+      internalID: 1434972307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16-DownAttack_5
+      name: 9-DirFall_5
       rect:
         serializedVersion: 2
         x: 400
@@ -229,8 +242,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c45876d866d1656419a6a38da2fd012b
-      internalID: -714793427
+      spriteID: 8d1d019a0c30cf64b8af3b606004e2b4
+      internalID: 145937585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9-DirFall_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5b159647e3ab1845b175909a36cd82e
+      internalID: 762907778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9-DirFall_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c869f2e65ff5d7f4aaaf4cef7eb6aa19
+      internalID: 928739732
       vertices: []
       indices: 
       edges: []
@@ -246,12 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      16-DownAttack_0: 1407650562
-      16-DownAttack_1: 278871410
-      16-DownAttack_2: 1526191897
-      16-DownAttack_3: 2034517524
-      16-DownAttack_4: -1499280117
-      16-DownAttack_5: -714793427
+      9-DirFall_0: -1755285010
+      9-DirFall_1: 274058365
+      9-DirFall_2: -2142896311
+      9-DirFall_3: 1894807104
+      9-DirFall_4: 1434972307
+      9-DirFall_5: 145937585
+      9-DirFall_6: 762907778
+      9-DirFall_7: 928739732
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f730ebeda7d580d419643bd11e1a5cba
+guid: 7b18bbe10f443154c89f300e2a9f9c30
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 18
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -111,7 +111,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ZDestructable_0
+      name: 14-FrontAttack2_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 0
         y: 0
-        width: 22
-        height: 36
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,62 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2a9ed3c32412ca4eac73528d548d71d
-      internalID: -973352422
+      spriteID: f48a7d0ee41f7f145a33691b1b698f86
+      internalID: 886793837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ZDestructable_1
+      name: 14-FrontAttack2_1
       rect:
         serializedVersion: 2
-        x: 65
-        y: 23
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f95099a8801d77a408879f38d194ed28
-      internalID: 2067386062
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ZDestructable_2
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 27
-        width: 9
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 710817bd69afef74a84098f5d9dc8a28
-      internalID: -1968630294
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ZDestructable_3
-      rect:
-        serializedVersion: 2
-        x: 40
+        x: 80
         y: 0
-        width: 16
-        height: 20
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,83 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8ff9dc9b6d70b041aa5f39a61f26f22
-      internalID: -1934752594
+      spriteID: c93ade4a84896214088d97e988a0e9f9
+      internalID: -1585259444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ZDestructable_4
+      name: 14-FrontAttack2_2
       rect:
         serializedVersion: 2
-        x: 69
-        y: 12
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 496a34e7b12d22644abb96f47b5eb060
-      internalID: -187610884
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ZDestructable_5
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 7
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b622b91fa42bf8459244d379fd56aa1
-      internalID: 506874653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ZDestructable_6
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 3
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77ba93a64b48c8449acf25c62d4885d9
-      internalID: -1749768064
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ZDestructable_7
-      rect:
-        serializedVersion: 2
-        x: 71
+        x: 160
         y: 0
-        width: 8
-        height: 8
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,8 +179,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae49e7003c00c6c4399434451a84340e
-      internalID: -496472569
+      spriteID: 41e99f6a68eaaed488693a5fb48703e3
+      internalID: 1348397473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 14-FrontAttack2_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c098f175b999eb7428f278b517c5f84b
+      internalID: -1782324876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 14-FrontAttack2_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5abc61ecc6f2aac4291e6eb0d37b7dc6
+      internalID: 1764949570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 14-FrontAttack2_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 033f38d376bf47243ad8245c280056ab
+      internalID: 956589290
       vertices: []
       indices: 
       edges: []
@@ -301,14 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ZDestructable_0: -973352422
-      ZDestructable_1: 2067386062
-      ZDestructable_2: -1968630294
-      ZDestructable_3: -1934752594
-      ZDestructable_4: -187610884
-      ZDestructable_5: 506874653
-      ZDestructable_6: -1749768064
-      ZDestructable_7: -496472569
+      14-FrontAttack2_0: 886793837
+      14-FrontAttack2_1: -1585259444
+      14-FrontAttack2_2: 1348397473
+      14-FrontAttack2_3: -1782324876
+      14-FrontAttack2_4: 1764949570
+      14-FrontAttack2_5: 956589290
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

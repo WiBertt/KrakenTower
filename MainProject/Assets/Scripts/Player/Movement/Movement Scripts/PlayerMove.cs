@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using Unity.VisualScripting;
 
 namespace WibertStudio
 {
@@ -21,22 +22,24 @@ namespace WibertStudio
         [Header("Movement Variables")]
         [Tooltip("Base move speed of the player")]
         [SerializeField] private float baseMoveSpeed;
+        [SerializeField] private float moveAttackSpeed;
+        [SerializeField] private float moveSpeedAttackSlowDuration;
         [SerializeField] private float acceleration;
         [SerializeField] private float groundDecceleration;
         [SerializeField] private float airDecceleration;
         [SerializeField] private float velPower;
         [SerializeField] private float groundFriction;
         [SerializeField] private float airFriction;
-       
-        [HideInInspector] public float initialMoveSpeed;
+
+        public float initialMoveSpeed;
         private float deceleration;
         private float friction;
         public float horizontalInput { get; set; }
         public float moveSpeed { get; set; }
         #endregion
-
+        public bool isAttackMoveSlowActive { get; set; }
         public bool IsCoroutineActive { get; set; }
-        
+
         private void Start()
         {
             playerManager = GetComponent<PlayerManager>();
@@ -75,7 +78,7 @@ namespace WibertStudio
             if (!playerManager.DoesPlayerHaveControl)
                 return;
 
-            horizontalInput = player.GetAxis("Move Horizontal");            
+            horizontalInput = player.GetAxis("Move Horizontal");
         }
 
         public void FixedUpdateState()
@@ -121,6 +124,19 @@ namespace WibertStudio
             baseMoveSpeed = newMoveSpeed;
         }
 
+        public IEnumerator AttackSlow()
+        {
+            if (!playerManager.IsGrounded)
+                yield break;
+
+            isAttackMoveSlowActive = true;
+            print("here");
+            moveSpeed = moveAttackSpeed;
+            yield return new WaitForSecondsRealtime(moveSpeedAttackSlowDuration);
+            moveSpeed = baseMoveSpeed;
+            isAttackMoveSlowActive = false;
+        }
+
         public void ResetMoveSpeed()
         {
             baseMoveSpeed = initialMoveSpeed;
@@ -128,7 +144,7 @@ namespace WibertStudio
 
         public void ExitState()
         {
-
+          
         }
     }
 }
