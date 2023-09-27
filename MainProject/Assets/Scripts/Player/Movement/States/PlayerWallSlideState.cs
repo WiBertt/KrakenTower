@@ -58,10 +58,9 @@ namespace WibertStudio
                 StartCoroutine(WallJumpBufferCoroutine());
             }
 
-           if (isSlidingOnWall && isWallJumpBufferActive && isWallJumpComplete)
-            {
-                WallJump();
-            }
+            if ((PlayerManager.instance.IsOnTopLeftWall && PlayerManager.instance.IsOnBottomLeftWall || PlayerManager.instance.IsOnTopRightWall && PlayerManager.instance.IsOnBottomRightWall))
+                if (isWallJumpBufferActive && isWallJumpComplete)
+                    WallJump();
         }
 
         private void WallJump()

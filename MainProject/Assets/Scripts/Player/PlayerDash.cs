@@ -22,6 +22,7 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] private MMF_Player dashFeedbacks;
 
     public bool CanDash { get; set; } = true;
+    public bool IsDashing { get; private set; }
 
     // Rewired
     [SerializeField] private int playerID = 0;
@@ -66,7 +67,7 @@ public class PlayerDash : MonoBehaviour
             StartCoroutine(DashCoolDown());
         }
         rb.velocity = new Vector2(0, 0);
-        
+        IsDashing = true;
         if (PlayerManager.instance.IsFacingRight && !PlayerManager.instance.IsOnRightWall)
         {
             animator.SetDashAnimation();
@@ -76,7 +77,8 @@ public class PlayerDash : MonoBehaviour
                 rb.velocity = new Vector2(transform.right.x * dashForce, rb.velocity.y);
 
             }).OnComplete(() =>
-            {                
+            {
+                IsDashing = false;
                 dashFeedbacks.StopFeedbacks();
             });
         }
@@ -89,7 +91,7 @@ public class PlayerDash : MonoBehaviour
                 rb.velocity = new Vector2(-transform.right.x * dashForce, rb.velocity.y);
             }).OnComplete(() =>
             {
-                
+                IsDashing = false;
                 dashFeedbacks.StopFeedbacks();
             });
         }

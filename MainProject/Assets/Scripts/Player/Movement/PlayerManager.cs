@@ -202,6 +202,7 @@ namespace WibertStudio
         public PlayerMove PlayerMove { get { return playerMove; } }
         public PlayerJump PlayerJump { get { return playerJump; } }
         public PlayerWallSlideState PlayerWallSlide { get; set; }
+        public PlayerDash PlayerDash { get; set; }
         public float CameraXOffset { get { return cameraXOffset; } }
         public float CameraYOffset { get { return cameraYOffset; } }
         #endregion
@@ -253,6 +254,7 @@ namespace WibertStudio
             playerMove = GetComponent<PlayerMove>();
             playerJump = GetComponent<PlayerJump>();
             PlayerWallSlide = GetComponent<PlayerWallSlideState>();
+            PlayerDash = GetComponent<PlayerDash>();
             player = ReInput.players.GetPlayer(playerID);
         }
 

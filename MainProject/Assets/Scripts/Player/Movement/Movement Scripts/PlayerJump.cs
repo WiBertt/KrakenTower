@@ -10,8 +10,6 @@ namespace WibertStudio
     [RequireComponent(typeof(PlayerManager))]
     public class PlayerJump : MonoBehaviour, IStateAccessable
     {
-        public static Action PlayerJumpAction;
-
         private PlayerManager playerManager;
         private PlayerMove playerMove;
         private PlayerAnimator playerAnimator;
@@ -169,7 +167,6 @@ namespace WibertStudio
             PlayFX();
             SetGravity();
             ResetApexModifier();
-            PlayerJumpAction?.Invoke();
 
             if (hasApexModifier)
                 apexModifierTimer = apexModifierTime;
@@ -222,6 +219,7 @@ namespace WibertStudio
         private void PlayFX()
         {
             jumpFeedback.PlayFeedbacks();
+            print("Jump");
         }
         public void ExitState()
         {

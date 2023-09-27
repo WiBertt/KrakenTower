@@ -3,6 +3,7 @@ using Rewired;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace WibertStudio
 {
@@ -15,6 +16,10 @@ namespace WibertStudio
         [SerializeField] private float yDeadZone;
         [SerializeField] private float attackCoolDown;
         [SerializeField] private float airAttackGravityRemovalTime;
+
+        [SerializeField] private UnityEvent attackedEvent;
+        [SerializeField] private UnityEvent hitEnemyEvent;
+
         private bool isAttackCoolDownActive;
         private bool wasAttackPressedWhileInCoolDown;
         private bool isAirAttackTimerActive;
@@ -39,6 +44,9 @@ namespace WibertStudio
 
         private void PlayerInput()
         {
+            if (PlayerManager.instance.PlayerWallSlide.isSlidingOnWall || PlayerManager.instance.PlayerDash.IsDashing)
+                return;
+
             if (player.GetButtonDown("Attack") && CanPlayerAttack)
                 Attack();
             else if (player.GetButtonDown("Attack") && isAttackCoolDownActive)
@@ -58,6 +66,7 @@ namespace WibertStudio
             isAirAttackTimerActive = false;
             wasAttackPressedWhileInCoolDown = false;
 
+            attackedEvent?.Invoke();
             playerAnimator.SetAttackAnimation();
             PlayerManager.instance.PlayerMove.StartCoroutine("AttackSlow");
         }
@@ -78,7 +87,7 @@ namespace WibertStudio
             {
                 damageable = collision.gameObject.GetComponent<Damageable>();
                 damageable.TakeDamage(5);
-
+                hitEnemyEvent?.Invoke();
 
                 if (!PlayerManager.instance.IsGrounded)
                 {
