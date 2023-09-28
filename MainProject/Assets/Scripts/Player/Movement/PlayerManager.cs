@@ -316,7 +316,6 @@ namespace WibertStudio
 
         public void ManualFlip()
         {
-            print("Here");
             if (IsFacingRight)
             {
                 IsFacingRight = false;

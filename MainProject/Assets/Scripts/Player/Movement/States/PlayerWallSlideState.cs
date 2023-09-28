@@ -65,19 +65,26 @@ namespace WibertStudio
 
         private void WallJump()
         {
+            PlayerManager.instance.Rb.gravityScale = 1;
             isWallJumpBufferActive = false;
             isWallJumpComplete = false;
             wasWallJumpPressed = true;
             playerAnimator.SetWallJumpAnimation();
             StopCoroutine(StopPlayerInputForWallJump());
             StartCoroutine(StopPlayerInputForWallJump());
-            if (PlayerManager.instance.IsFacingRight)
+            if (PlayerManager.instance.IsOnRightWall)
             {
+                if (!PlayerManager.instance.IsFacingRight)
+                    PlayerManager.instance.ManualFlip();
+
                 PlayerManager.instance.Rb.velocity = (new Vector2(-xForceOnJump, yForceOnJump));
                 wallJumpFeedbacks.PlayFeedbacks();
             }
-            else
+            else if (PlayerManager.instance.IsOnLeftWall)
             {
+                if (PlayerManager.instance.IsFacingRight)
+                    PlayerManager.instance.ManualFlip();
+
                 PlayerManager.instance.Rb.velocity = (new Vector2(xForceOnJump, yForceOnJump));
                 wallJumpFeedbacks.PlayFeedbacks();
             }

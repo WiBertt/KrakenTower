@@ -167,7 +167,7 @@ namespace WibertStudio
             PlayFX();
             SetGravity();
             ResetApexModifier();
-
+            print("Jump");
             if (hasApexModifier)
                 apexModifierTimer = apexModifierTime;
         }
@@ -219,7 +219,6 @@ namespace WibertStudio
         private void PlayFX()
         {
             jumpFeedback.PlayFeedbacks();
-            print("Jump");
         }
         public void ExitState()
         {
