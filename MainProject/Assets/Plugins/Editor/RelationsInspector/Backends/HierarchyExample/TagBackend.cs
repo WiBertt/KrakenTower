@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using System.Linq;
-using DarkTonic.MasterAudio;
 
 namespace RelationsInspector.Backend.Scene
 {

@@ -8,15 +8,14 @@ using UnityEngine;
 namespace WibertStudio
 {
     [RequireComponent(typeof(PlayerManager))]
-    public class PlayerJump : MonoBehaviour, IStateAccessable
+    public class PlayerJump : MonoBehaviour
     {
         private PlayerManager playerManager;
         private PlayerMove playerMove;
         private PlayerAnimator playerAnimator;
 
         // Rewired
-        [SerializeField] private int playerID = 0;
-        [SerializeField] private Player player;
+        private Player player;
 
         [SerializeField] private MMF_Player jumpFeedback;
         #region Jump variables
@@ -100,12 +99,7 @@ namespace WibertStudio
             playerMove = GetComponent<PlayerMove>();
             playerAnimator = GetComponent<PlayerAnimator>();
 
-            player = ReInput.players.GetPlayer(playerID);
-        }
-
-        public void EnterState()
-        {
-
+            player = playerManager.Player;
         }
 
         public void ResetJumpAttributes()
@@ -118,6 +112,11 @@ namespace WibertStudio
                 availableJumps = maxNumberOfJumps;
                 hasJumped = false;
             }
+
+            if (playerManager.IsGrounded && IsJumpBufferActive && AvailableJumps > 0)
+                Jump();
+
+            ResetCoyoteTimer();
         }
 
         public void ResetApexModifierAttributes()
@@ -129,11 +128,15 @@ namespace WibertStudio
             }
         }
 
-        public void UpdateState()
+        public void Update()
         {
             PlayerInput();
             HandleJump();
             HandleApexModifier();
+            HandleJumpBuffer();
+
+            if(!playerManager.IsGrounded && CoyoteJump)
+                HandleCoyoteTime();
         }
 
         private void PlayerInput()
@@ -155,6 +158,8 @@ namespace WibertStudio
                 return;
             if (canJump())
                 Jump();
+
+            
         }
 
         public void Jump()
@@ -165,18 +170,68 @@ namespace WibertStudio
             doesJumpNeedToBePressedAgain = true;
             hasJumped = true;
             PlayFX();
-            SetGravity();
+            playerManager.SetGravity(playerManager.BaseGravityScale);
             ResetApexModifier();
             print("Jump");
             if (hasApexModifier)
                 apexModifierTimer = apexModifierTime;
         }
 
-        public void FixedUpdateState()
+        public void FixedUpdate()
         {
 
         }
 
+        private void HandleJumpBuffer()
+        {
+            if (IsJumpPressed && !DoesJumpNeedToBePressedAgain)
+            {
+                JumpBufferTimer =   JumpBufferDuration;
+                WasJumpPressed = true;
+                DoesJumpNeedToBePressedAgain = true;
+            }
+
+            if (WasJumpPressed)
+            {
+                JumpBuffer();
+            }
+        }
+
+        private void JumpBuffer()
+        {
+            if (JumpBufferTimer > 0)
+            {
+                IsJumpBufferActive = true;
+                JumpBufferTimer -= Time.deltaTime;
+            }
+            else if (JumpBufferTimer <= 0)
+            {
+                IsJumpBufferActive = false;
+            }
+        }
+
+        private void ResetCoyoteTimer()
+        {
+            if (!HasMultipleJumps)
+                CoyoteTimer = CoyoteTime;
+        }
+
+        private void HandleCoyoteTime()
+        {
+            if (!HasMultipleJumps && CoyoteTimer > 0)
+                CoyoteTimeClock();
+            else if (CoyoteTimer < 0)
+                CoyoteJump = false;
+        }
+
+        private void CoyoteTimeClock()
+        {
+            if (CoyoteTimer > 0)
+            {
+                CoyoteTimer -= Time.deltaTime;
+                CoyoteJump = true;
+            }
+        }
         private void HandleApexModifier()
         {
             if (hasApexModifier && !isApexModifierComplete && playerManager.Rb.velocity.y < 1.5 && hasJumped)
@@ -211,18 +266,10 @@ namespace WibertStudio
             isApexModifierComplete = false;
         }
 
-        private void SetGravity()
-        {
-            playerManager.Rb.gravityScale = playerManager.BaseGravityScale;
-        }
 
         private void PlayFX()
         {
             jumpFeedback.PlayFeedbacks();
-        }
-        public void ExitState()
-        {
-
         }
     }
 }

@@ -7,16 +7,14 @@ using Unity.VisualScripting;
 namespace WibertStudio
 {
     [RequireComponent(typeof(PlayerManager))]
-    public class PlayerMove : MonoBehaviour, IStateAccessable
+    public class PlayerMove : MonoBehaviour
     {
         private PlayerManager playerManager;
         private PlayerAnimator animator;
+        private Player player;
 
         [SerializeField] private ParticleSystem playerDustParticles;
 
-        // Rewired
-        [SerializeField] private int playerID = 0;
-        [SerializeField] private Player player;
 
         #region Movement variables
         [Header("Movement Variables")]
@@ -45,7 +43,7 @@ namespace WibertStudio
             playerManager = GetComponent<PlayerManager>();
             animator = GetComponent<PlayerAnimator>();
 
-            player = ReInput.players.GetPlayer(playerID);
+            player =  playerManager.Player;
 
             moveSpeed = baseMoveSpeed;
             initialMoveSpeed = baseMoveSpeed;
@@ -60,12 +58,7 @@ namespace WibertStudio
             deceleration = airDecceleration;
             friction = airFriction;
         }
-        public void EnterState()
-        {
-
-        }
-
-        public void UpdateState()
+        public void Update()
         {
             PlayerInput();
             //Particles
@@ -81,7 +74,7 @@ namespace WibertStudio
             horizontalInput = player.GetAxis("Move Horizontal");
         }
 
-        public void FixedUpdateState()
+        public void FixedUpdate()
         {
             Move();
         }
@@ -142,9 +135,5 @@ namespace WibertStudio
             baseMoveSpeed = initialMoveSpeed;
         }
 
-        public void ExitState()
-        {
-          
-        }
     }
 }

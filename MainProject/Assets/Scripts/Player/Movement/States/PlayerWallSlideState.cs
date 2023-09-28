@@ -7,15 +7,12 @@ using UnityEngine;
 
 namespace WibertStudio
 {
-    public class PlayerWallSlideState : MonoBehaviour, IStateAccessable
+    public class PlayerWallSlideState : MonoBehaviour
     {
         // References
-        private PlayerMove playerMove;
-        private PlayerAnimator playerAnimator;
+        private PlayerManager playerManager;
+        private Player player;
 
-        // Rewired
-        [SerializeField] private int playerID = 0;
-        [SerializeField] private Player player;
         [SerializeField] private MMF_Player wallSlideFeedbacks;
         [SerializeField] private MMF_Player wallJumpFeedbacks;
 
@@ -32,21 +29,16 @@ namespace WibertStudio
         private bool isWallJumpBufferActive;
         private bool wasWallJumpPressed;
         private bool isWallJumpComplete = true;
-
         private void Start()
         {
-            playerMove = GetComponent<PlayerMove>();
-            playerAnimator = GetComponent<PlayerAnimator>();
-            player = ReInput.players.GetPlayer(playerID);
+            playerManager = GetComponent<PlayerManager>();
+            player = playerManager.Player;
         }
-
-        public void EnterState()
+        public void Update()
         {
-            StartCoroutine(WallSlideCountDown());
-        }
+            if (PlayerManager.instance.IsGrounded)
+                return;
 
-        public void UpdateState()
-        {
             if (isSlidingOnWall)
             {
                 PlayerManager.instance.Rb.gravityScale = PlayerManager.instance.BaseGravityScale;
@@ -69,7 +61,7 @@ namespace WibertStudio
             isWallJumpBufferActive = false;
             isWallJumpComplete = false;
             wasWallJumpPressed = true;
-            playerAnimator.SetWallJumpAnimation();
+            PlayerManager.instance.PlayerAnimator.SetWallJumpAnimation();
             StopCoroutine(StopPlayerInputForWallJump());
             StartCoroutine(StopPlayerInputForWallJump());
             if (PlayerManager.instance.IsOnRightWall)
@@ -88,8 +80,8 @@ namespace WibertStudio
                 PlayerManager.instance.Rb.velocity = (new Vector2(xForceOnJump, yForceOnJump));
                 wallJumpFeedbacks.PlayFeedbacks();
             }
-            playerAnimator.StartCoroutine("HardLandingCoroutine");
-            playerAnimator.StopCoroutine("HardLandingCoroutine");
+            PlayerManager.instance.PlayerAnimator.StartCoroutine("HardLandingCoroutine");
+            PlayerManager.instance.PlayerAnimator.StopCoroutine("HardLandingCoroutine");
             isWallJumpComplete = true;
         }
 
@@ -103,27 +95,28 @@ namespace WibertStudio
         private IEnumerator StopPlayerInputForWallJump()
         {
             DOTween.CompleteAll();
-            playerMove.moveSpeed = 0;
+            PlayerManager.instance.PlayerMove.moveSpeed = 0;
             PlayerManager.instance.DoesPlayerHaveControl = false;
-            DOTween.To(() => playerMove.moveSpeed, x => playerMove.moveSpeed = x, playerMove.initialMoveSpeed, timeToResetMoveSpeed);
+            DOTween.To(() => PlayerManager.instance.PlayerMove.moveSpeed, x => PlayerManager.instance.PlayerMove.moveSpeed = x, PlayerManager.instance.PlayerMove.initialMoveSpeed, timeToResetMoveSpeed);
             yield return new WaitForSecondsRealtime(timeToRemovePlayerInput);
+            print("here");
             PlayerManager.instance.DoesPlayerHaveControl = true;
         }
 
-        public void FixedUpdateState()
+        public void FixedUpdate()
         {
-            if (!canSlideOnWall)
+            if (!canSlideOnWall || PlayerManager.instance.IsGrounded)
                 return;
 
-            if (PlayerManager.instance.IsOnTopLeftWall && PlayerManager.instance.IsOnBottomLeftWall && playerMove.horizontalInput < 0 || PlayerManager.instance.IsOnTopRightWall && PlayerManager.instance.IsOnBottomRightWall && playerMove.horizontalInput > 0)
+            if (PlayerManager.instance.IsOnTopLeftWall && PlayerManager.instance.IsOnBottomLeftWall && playerManager.PlayerMove.horizontalInput < 0 || PlayerManager.instance.IsOnTopRightWall && PlayerManager.instance.IsOnBottomRightWall && playerManager.PlayerMove.horizontalInput > 0)
             {
                 isSlidingOnWall = true;
                 if (!wasWallJumpPressed)
                 {
                     wallSlideFeedbacks.PlayFeedbacks();
                     PlayerManager.instance.Rb.velocity = Vector2.ClampMagnitude(PlayerManager.instance.Rb.velocity, wallSlideSpeed);
-                    playerAnimator.StartCoroutine("HardLandingCoroutine");
-                    playerAnimator.StopCoroutine("HardLandingCoroutine");
+                    PlayerManager.instance.PlayerAnimator.StartCoroutine("HardLandingCoroutine");
+                    PlayerManager.instance.PlayerAnimator.StopCoroutine("HardLandingCoroutine");
                 }
 
             }
@@ -135,7 +128,7 @@ namespace WibertStudio
             }
         }
 
-        public void ExitState()
+        public void ResetWallSlideAttributes()
         {
             isSlidingOnWall = false;
             canSlideOnWall = false;

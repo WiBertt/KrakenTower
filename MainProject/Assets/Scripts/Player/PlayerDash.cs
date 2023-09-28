@@ -1,4 +1,3 @@
-using Com.LuisPedroFonseca.ProCamera2D.Platformer;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 using Rewired;

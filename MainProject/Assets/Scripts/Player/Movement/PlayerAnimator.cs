@@ -58,7 +58,7 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("IsRunStopping", isRunStopping);
         animator.SetBool("IsTurning", isTurning);
         animator.SetBool("IsDashing", isDashing);
-        animator.SetBool("IsWallSliding", wallSlideState.isSlidingOnWall);
+       // animator.SetBool("IsWallSliding", wallSlideState.isSlidingOnWall);
         animator.SetBool("WillDoHardLanding", willDoHardLanding);
         animator.SetBool("IsWallContactComplete", isWallContactComplete);
         animator.SetBool("IsDoingWallJump", isWallJumping);
@@ -100,12 +100,12 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         // Wall contact
-        if (!wallSlideState.isSlidingOnWall)
-            isWallContactComplete = false;
-        if (wallSlideState.isSlidingOnWall && !isWallContactComplete)
-        {
-            StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("WallContact")));
-        }
+        //if (!wallSlideState.isSlidingOnWall)
+        //    isWallContactComplete = false;
+        //if (wallSlideState.isSlidingOnWall && !isWallContactComplete)
+        //{
+        //    StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("WallContact")));
+        //}
     }
 
     public void CheckLandAnimation()

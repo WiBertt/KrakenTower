@@ -1,4 +1,3 @@
-using Com.LuisPedroFonseca.ProCamera2D;
 using Rewired;
 using UnityEngine;
 
@@ -9,26 +8,12 @@ namespace WibertStudio
     public class PlayerManager : MonoBehaviour
     {
         public static PlayerManager instance;
-        PlayerBaseState currentState;
-
-        // Possible states
-        public PlayerGroundedState groundedState = new PlayerGroundedState();
-        public PlayerInAirState inAirState = new PlayerInAirState();
-
-        // Logic scripts
-        private PlayerMove playerMove;
-        private PlayerJump playerJump;
 
         // Rewired
-        [SerializeField] private int playerID = 0;
-        [SerializeField] private Player player;
+        private int playerID = 0;
+        
 
         #region Variables
-        #region References
-        private Rigidbody2D rb;
-        [SerializeField] private float cameraXOffset;
-        [SerializeField] private float cameraYOffset;
-        #endregion
         #region Base paramenters
         [Header("Base Paramenters")]
         [Tooltip("Gravity scale that will affect the player when reentering the grounded state")]
@@ -38,18 +23,9 @@ namespace WibertStudio
         [Range(-100, 0)]
         [SerializeField] private float maxFallSpeed = -50f;
         [Tooltip("If true will flip sprite to face the movement direction")]
-        [SerializeField] private bool canFlipSprite = true;
         private float initialFallSpeed;
-        private float verticalInput;
         private bool canAttack = true;
-        public enum direction
-        {
-            left,
-            right,
-        }
 
-        private direction currentDirection;
-        [Space()]
         #endregion
         #region Collision check variables
         [Header("Ground Check Variables")]
@@ -197,14 +173,13 @@ namespace WibertStudio
 
         #region Getters/Setters
         #region References
-        public Rigidbody2D Rb { get { return rb; } }
+        public Rigidbody2D Rb { get; private set; }
+        public Player Player { get; private set; }
         public PlayerAnimator PlayerAnimator { get; set; }
-        public PlayerMove PlayerMove { get { return playerMove; } }
-        public PlayerJump PlayerJump { get { return playerJump; } }
-        public PlayerWallSlideState PlayerWallSlide { get; set; }
-        public PlayerDash PlayerDash { get; set; }
-        public float CameraXOffset { get { return cameraXOffset; } }
-        public float CameraYOffset { get { return cameraYOffset; } }
+        public PlayerMove PlayerMove { get; private set; }
+        public PlayerJump PlayerJump { get; private set; }
+        public PlayerWallSlideState PlayerWallSlide { get; private set; }
+        public PlayerDash PlayerDash { get; private set; }
         #endregion
         #region Base parameters
         public float BaseGravityScale { get { return baseGravityScale; } }
@@ -213,7 +188,7 @@ namespace WibertStudio
         public bool DoesPlayerHaveControl { get; set; } = true;
         public bool IsFacingRight { get; set; }
         public bool CanAttack { get { return canAttack; } set { canAttack = value; } }
-        public bool CanFlipSprite { get { return canFlipSprite; } set { canFlipSprite = value; } }
+        public bool CanFlipSprite { get; set; } = true;
         #endregion
         #region Collision checks
         public bool IsOnLeftGround { get { return isOnLeftGround(); } }
@@ -233,61 +208,35 @@ namespace WibertStudio
         #endregion
         #endregion
 
+        private bool isGroundAttributesSet;
+        private bool isAirAttributesSet;
+
         private void Awake()
         {
             instance = this;
-        }
-        private void Start()
-        {
             SetReferencesAndInitialValues();
-
-            //Sets starting state to avoid errors
-            currentState = groundedState;
-            currentState.EnterState(this);
         }
 
         private void SetReferencesAndInitialValues()
         {
             //References
-            rb = GetComponent<Rigidbody2D>();
+            Rb = GetComponent<Rigidbody2D>();
             PlayerAnimator = GetComponent<PlayerAnimator>();
-            playerMove = GetComponent<PlayerMove>();
-            playerJump = GetComponent<PlayerJump>();
+            PlayerMove = GetComponent<PlayerMove>();
+            PlayerJump = GetComponent<PlayerJump>();
             PlayerWallSlide = GetComponent<PlayerWallSlideState>();
             PlayerDash = GetComponent<PlayerDash>();
-            player = ReInput.players.GetPlayer(playerID);
+            Player = ReInput.players.GetPlayer(playerID);
         }
+
+        private void Start() { }
+        
 
         private void Update()
         {
-            currentState.UpdateState();
-            currentState.SwitchConditions();
-            Flip();
-            PlayerLook();
-        }
-
-        private void PlayerLook()
-        {
-            float horizontalInput = player.GetAxis("Move Horizontal");
-            //if (!IsGrounded || horizontalInput != 0f)
-            //{
-            //    proCamera2D.OffsetY = 0;
-            //    return;
-            //}
-
-            verticalInput = player.GetAxis("Look");
-
-            //if (verticalInput > .8f)
-            //  //  proCamera2D.OffsetY = cameraYOffset;
-            //else if (verticalInput < -.8f)
-            // //   proCamera2D.OffsetY = -cameraYOffset;
-            //else if (verticalInput >= -.9f || verticalInput <= .9f)
-            //   // proCamera2D.OffsetY = 0;
-        }
-
-        private void FixedUpdate()
-        {
-            currentState.FixedUpdateState();
+            Flip();           
+            CheckVariablesBasedOnGroundedState();
+            FallVelocityClamp();
         }
 
         private void Flip()
@@ -295,13 +244,14 @@ namespace WibertStudio
             if (!DoesPlayerHaveControl)
                 return;
 
-            
+
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-                player.GetAxis("Move Horizontal").Equals(0);
-            float moveHorizontal = player.GetAxis("Move Horizontal");
-            if (canFlipSprite)
+                Player.GetAxis("Move Horizontal").Equals(0);
+            float moveHorizontal = Player.GetAxis("Move Horizontal");
+ 
+            if (CanFlipSprite)
             {
-                if ( moveHorizontal> .1f)
+                if (moveHorizontal > .1f)
                 {
                     IsFacingRight = true;
                     transform.localScale = Vector3.one;
@@ -313,6 +263,19 @@ namespace WibertStudio
                 }
             }
         }
+        private void CheckVariablesBasedOnGroundedState()
+        {
+            if (IsGrounded && !isGroundAttributesSet)
+                SetGroundAttributes();
+            else if (!IsGrounded && !isAirAttributesSet)
+                SetAirAttributes();
+        }
+        private void FixedUpdate()
+        {
+            CheckYVelocity();
+        }
+
+      
 
         public void ManualFlip()
         {
@@ -327,27 +290,52 @@ namespace WibertStudio
                 IsFacingRight = true;
                 transform.localScale = Vector3.one;
             }
-         
+
         }
 
-        public void SwitchState(PlayerBaseState state)
+        private void SetGroundAttributes()
         {
-            currentState.ExitState();
-            currentState = state;
-            currentState.EnterState(this);
+            isAirAttributesSet = false;
+            isGroundAttributesSet = true;
+
+            PlayerMove.SetGroundValues();
+            PlayerJump.ResetJumpAttributes();
+            PlayerJump.CoyoteJump = true;
+            PlayerAnimator.StopCoroutine("HardLandingCoroutine");
+            PlayerAnimator.CheckLandAnimation();
+            SetGravity(baseGravityScale);
+            PlayerWallSlide.ResetWallSlideAttributes();
+            print("set ground attributes");
         }
 
-        public void SetGravity(string State)
+        private void SetAirAttributes()
         {
-            switch (State)
-            {
-                case ("Base"):
-                    break;
-                case ("Falling"):
-                    break;
-            }
+            isGroundAttributesSet = false;
+            isAirAttributesSet = true;
+
+            PlayerMove.SetAirValues();
+            PlayerJump.IsJumpBufferActive = false;
+            PlayerAnimator.StartCoroutine("HardLandingCoroutine");
+            PlayerWallSlide.StartCoroutine("WallSlideCountDown");
+            print("set air attributes");
         }
 
+        public void SetGravity(float amt)
+        {
+            Rb.gravityScale = amt;
+            print(amt);
+        }
+
+        private void FallVelocityClamp()
+        {
+            if (Rb.velocity.y < MaxFallSpeed)
+                Rb.velocity = new Vector2(Rb.velocity.x, MaxFallSpeed);
+        }
+        private void CheckYVelocity()
+        {
+            if (Rb.velocity.y < -1 || !PlayerJump.IsJumpPressed && PlayerJump.HasJumped && PlayerJump.ApplyForceOnJumpRelease && PlayerJump.HasApexModifier || !PlayerJump.IsJumpPressed && PlayerJump.HasJumped && PlayerJump.ApplyForceOnJumpRelease && PlayerJump.IsApexModifierComplete)
+                SetGravity(fallGravityScale);
+        }
         private void OnDrawGizmos()
         {
             //Ground check
