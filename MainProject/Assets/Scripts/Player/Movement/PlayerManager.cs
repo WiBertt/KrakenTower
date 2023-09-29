@@ -1,39 +1,50 @@
 using Rewired;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using WibertStudio;
 
-namespace WibertStudio
-{
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(PlayerMove))]
+    [RequireComponent(typeof(PlayerJump))]
+    [RequireComponent(typeof(PlayerDash))]
+    [RequireComponent(typeof(PlayerWallSlide_WallJump))]
+    [RequireComponent(typeof(PlayerAnimator))]
     public class PlayerManager : MonoBehaviour
     {
         public static PlayerManager instance;
 
-        // Rewired
-        private int playerID = 0;
-        
-
         #region Variables
         #region Base paramenters
-        [Header("Base Paramenters")]
-        [Tooltip("Gravity scale that will affect the player when reentering the grounded state")]
-        [SerializeField] private float baseGravityScale = 1;
-        [SerializeField] private float fallGravityScale = 3;
-        [Tooltip("The max downward velocity that the player can be traveling at")]
-        [Range(-100, 0)]
-        [SerializeField] private float maxFallSpeed = -50f;
-        [Tooltip("If true will flip sprite to face the movement direction")]
+        [BoxGroup("Base Parameters")]
+        [PropertyTooltip("Gravity that is active while grounded and ascending")]
+        public float BaseGravityScale = 1;
+        [BoxGroup("Base Parameters")]
+        [PropertyTooltip("Gravity that is active while descending")]
+        public float FallGravityScale = 3;
+        [BoxGroup("Base Parameters")]
+        [PropertyTooltip("The max speed that the player can fall")]
+        public float MaxFallSpeed = -50f;
         private float initialFallSpeed;
-        private bool canAttack = true;
-
         #endregion
+       
         #region Collision check variables
-        [Header("Ground Check Variables")]
+        #region Ground check
         // Ground check variables
+        [TabGroup("Ground Check")]
+        [PropertyTooltip("Layers to consider as ground")]
         [SerializeField] private LayerMask groundCheckLayerMask;
+        [TabGroup("Ground Check")]
+        [PropertyTooltip("Offset for left ray cast")]
         [SerializeField] private Vector2 leftGroundCheckOffSet;
-        [SerializeField] private Vector2 middleGroundCheckOffset;
+        [TabGroup("Ground Check")]
+        [PropertyTooltip("Offset for middle ray cast")]
+        [SerializeField] private Vector2 middleGroundCheckOffSet;
+        [TabGroup("Ground Check")]
+        [PropertyTooltip("Offset for right ray cast")]
         [SerializeField] private Vector2 rightGroundCheckOffset;
+        [TabGroup("Ground Check")]
+        [PropertyTooltip("How far the ray is cast")]
         [SerializeField] private float groundCheckDistance;
 
         private bool isOnLeftGround()
@@ -46,7 +57,7 @@ namespace WibertStudio
 
         private bool isOnMiddleGround()
         {
-            if (Physics2D.Raycast(new Vector2(transform.position.x + middleGroundCheckOffset.x, transform.position.y + middleGroundCheckOffset.y), -transform.up, groundCheckDistance, groundCheckLayerMask))
+            if (Physics2D.Raycast(new Vector2(transform.position.x + middleGroundCheckOffSet.x, transform.position.y + middleGroundCheckOffSet.y), -transform.up, groundCheckDistance, groundCheckLayerMask))
                 return true;
             else
                 return false;
@@ -67,14 +78,23 @@ namespace WibertStudio
             else
                 return false;
         }
-        [Space(5)]
-
-        [Header("Ceiling Check Variables")]
+        #endregion
+        #region Ceiling check
         // Ceiling check variablies
+        [TabGroup("Ceiling Check")]
+        [PropertyTooltip("Layers to consider as ceiling")]
         [SerializeField] private LayerMask ceilingCheckLayerMask;
+        [TabGroup("Ceiling Check")]
+        [PropertyTooltip("Offset for left ray cast")]
         [SerializeField] private Vector2 leftCeilingCheckOffSet;
+        [TabGroup("Ceiling Check")]
+        [PropertyTooltip("Offset for middle ray cast")]
         [SerializeField] private Vector2 middleCeilingCheckOffSet;
+        [TabGroup("Ceiling Check")]
+        [PropertyTooltip("Offset for right ray cast")]
         [SerializeField] private Vector2 rightCeilingCheckOffSet;
+        [TabGroup("Ceiling Check")]
+        [PropertyTooltip("How far the ray is cast")]
         [SerializeField] private float ceilingCheckCastDistance;
 
         private bool isOnLeftCeiling()
@@ -107,15 +127,23 @@ namespace WibertStudio
             else
                 return false;
         }
-
-
-        [Header("Wall Check Variables")]
+        #endregion
+        #region Left wall Check
+        [TabGroup("Right Wall Check")]
+        [TabGroup("Left Wall Check")]
+        [PropertyTooltip("Layers to consider as wall")]
         [SerializeField] private LayerMask wallCheckLayerMask;
         [Space(5)]
 
         // Left wall check variables
+        [TabGroup("Left Wall Check")]
+        [PropertyTooltip("Offset for top ray cast")]
         [SerializeField] private Vector2 topLeftWallCheckOffSet;
+        [TabGroup("Left Wall Check")]
+        [PropertyTooltip("Offset for bottom ray cast")]
         [SerializeField] private Vector2 bottomLeftWallCheckOffSet;
+        [TabGroup("Left Wall Check")]
+        [PropertyTooltip("How far the ray is cast")]
         [SerializeField] private float leftWallCheckCastDistance;
 
         private bool isOnTopLeftWall()
@@ -140,11 +168,14 @@ namespace WibertStudio
             else
                 return false;
         }
-        [Space(5)]
-
+        #endregion
+        #region Right wall check
         // Right wall check variables
+        [TabGroup("Right Wall Check")]
         [SerializeField] private Vector2 topRightWallCheckOffSet;
+        [TabGroup("Right Wall Check")]
         [SerializeField] private Vector2 bottomRightWallCheckOffSet;
+        [TabGroup("Right Wall Check")]
         [SerializeField] private float rightWallCheckCastDistance;
         private bool isOnTopRightWall()
         {
@@ -167,7 +198,43 @@ namespace WibertStudio
             else
                 return false;
         }
+        #endregion
+        #endregion
 
+        #region Logic variables and Debug variables
+        // logic
+        [ReadOnly]
+        [ShowInInspector]
+        [FoldoutGroup("Debug")]
+        public bool CanAttack = true;
+        [ReadOnly]
+        [ShowInInspector]
+        [FoldoutGroup("Debug")]
+        public bool CanFlipSprite = true;
+        [ReadOnly]
+        [FoldoutGroup("Debug")]
+        public bool DoesPlayerHaveControl = true;
+        [ReadOnly]
+        [FoldoutGroup("Debug")]
+        public bool IsFacingRight = true;
+        [ReadOnly]
+        [ShowInInspector]
+        [FoldoutGroup("Debug")]
+        private bool isGroundAttributesSet;
+        [ReadOnly]
+        [ShowInInspector]
+        [FoldoutGroup("Debug")]
+        private bool isAirAttributesSet;
+
+        //debug
+        [ReadOnly]
+        [ShowInInspector]
+        [FoldoutGroup("Debug")]
+        public string HorizontalMoveSpeed;
+        [ReadOnly]
+        [ShowInInspector]
+        [FoldoutGroup("Debug")]
+        public string VerticalMoveSpeed;
         #endregion
         #endregion
 
@@ -178,17 +245,8 @@ namespace WibertStudio
         public PlayerAnimator PlayerAnimator { get; set; }
         public PlayerMove PlayerMove { get; private set; }
         public PlayerJump PlayerJump { get; private set; }
-        public PlayerWallSlideState PlayerWallSlide { get; private set; }
+        public PlayerWallSlide_WallJump PlayerWallSlide { get; private set; }
         public PlayerDash PlayerDash { get; private set; }
-        #endregion
-        #region Base parameters
-        public float BaseGravityScale { get { return baseGravityScale; } }
-        public float FallGravityScale { get { return fallGravityScale; } }
-        public float MaxFallSpeed { get { return maxFallSpeed; } }
-        public bool DoesPlayerHaveControl { get; set; } = true;
-        public bool IsFacingRight { get; set; }
-        public bool CanAttack { get { return canAttack; } set { canAttack = value; } }
-        public bool CanFlipSprite { get; set; } = true;
         #endregion
         #region Collision checks
         public bool IsOnLeftGround { get { return isOnLeftGround(); } }
@@ -206,10 +264,7 @@ namespace WibertStudio
         public bool IsOnLeftWall { get { return isOnLeftWall(); } }
         public bool IsOnRightWall { get { return isOnRightWall(); } }
         #endregion
-        #endregion
-
-        private bool isGroundAttributesSet;
-        private bool isAirAttributesSet;
+        #endregion      
 
         private void Awake()
         {
@@ -224,19 +279,18 @@ namespace WibertStudio
             PlayerAnimator = GetComponent<PlayerAnimator>();
             PlayerMove = GetComponent<PlayerMove>();
             PlayerJump = GetComponent<PlayerJump>();
-            PlayerWallSlide = GetComponent<PlayerWallSlideState>();
+            PlayerWallSlide = GetComponent<PlayerWallSlide_WallJump>();
             PlayerDash = GetComponent<PlayerDash>();
-            Player = ReInput.players.GetPlayer(playerID);
+            Player = ReInput.players.GetPlayer(0);
         }
 
         private void Start() { }
-        
 
         private void Update()
         {
-            Flip();           
+            Flip();
             CheckVariablesBasedOnGroundedState();
-            FallVelocityClamp();
+            FallVelocityClamp();         
         }
 
         private void Flip()
@@ -244,11 +298,10 @@ namespace WibertStudio
             if (!DoesPlayerHaveControl)
                 return;
 
-
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
                 Player.GetAxis("Move Horizontal").Equals(0);
             float moveHorizontal = Player.GetAxis("Move Horizontal");
- 
+
             if (CanFlipSprite)
             {
                 if (moveHorizontal > .1f)
@@ -263,6 +316,8 @@ namespace WibertStudio
                 }
             }
         }
+
+        // sets appropriate parameters based off grounded state
         private void CheckVariablesBasedOnGroundedState()
         {
             if (IsGrounded && !isGroundAttributesSet)
@@ -270,13 +325,65 @@ namespace WibertStudio
             else if (!IsGrounded && !isAirAttributesSet)
                 SetAirAttributes();
         }
+
+        // clamps the y velocity to not exceed a certain value
+        private void FallVelocityClamp()
+        {
+            if (Rb.velocity.y < MaxFallSpeed)
+                Rb.velocity = new Vector2(Rb.velocity.x, MaxFallSpeed);
+        }
+
+        private void SetGroundAttributes()
+        {
+            isAirAttributesSet = false;
+            isGroundAttributesSet = true;
+
+            PlayerMove.SetGroundValues();
+            PlayerJump.ResetJumpAttributes();
+            PlayerJump.CoyoteJump = true;
+            PlayerAnimator.StopCoroutine("HardLandingCoroutine");
+            PlayerAnimator.CheckLandAnimation();
+            SetGravity(BaseGravityScale);
+            PlayerWallSlide.ResetWallSlideAttributes();
+        }
+
+        private void SetAirAttributes()
+        {
+            isGroundAttributesSet = false;
+            isAirAttributesSet = true;
+
+            PlayerMove.SetAirValues();
+            PlayerJump.IsJumpBufferActive = false;
+            PlayerAnimator.StartCoroutine("HardLandingCoroutine");
+            PlayerWallSlide.StartCoroutine("WallSlideCountDown");
+        }
+
         private void FixedUpdate()
         {
             CheckYVelocity();
+            GetVelocitys();
         }
 
-      
+        // checks the y velocity and changes gravity scale based off value
+        private void CheckYVelocity()
+        {
+        if (PlayerJump.isInApexModifier)
+            return;
 
+            if (Rb.velocity.y < -1 || !PlayerJump.IsJumpPressed && PlayerJump.HasJumped && PlayerJump.ApplyForceOnJumpRelease && PlayerJump.HasApexModifier || !PlayerJump.IsJumpPressed && PlayerJump.HasJumped && PlayerJump.ApplyForceOnJumpRelease && PlayerJump.IsApexModifierComplete)
+                SetGravity(FallGravityScale);
+        }
+
+        // gets x and y velocity values
+        private void GetVelocitys()
+        {
+            HorizontalMoveSpeed = Mathf.Abs(Rb.velocity.x).ToString("F2");
+            VerticalMoveSpeed = Mathf.Abs(Rb.velocity.y).ToString("F2");
+        }
+
+        /// <summary>
+        /// manually flips the sprite in the opposite direction
+        /// </summary>
         public void ManualFlip()
         {
             if (IsFacingRight)
@@ -292,50 +399,12 @@ namespace WibertStudio
             }
 
         }
-
-        private void SetGroundAttributes()
-        {
-            isAirAttributesSet = false;
-            isGroundAttributesSet = true;
-
-            PlayerMove.SetGroundValues();
-            PlayerJump.ResetJumpAttributes();
-            PlayerJump.CoyoteJump = true;
-            PlayerAnimator.StopCoroutine("HardLandingCoroutine");
-            PlayerAnimator.CheckLandAnimation();
-            SetGravity(baseGravityScale);
-            PlayerWallSlide.ResetWallSlideAttributes();
-            print("set ground attributes");
-        }
-
-        private void SetAirAttributes()
-        {
-            isGroundAttributesSet = false;
-            isAirAttributesSet = true;
-
-            PlayerMove.SetAirValues();
-            PlayerJump.IsJumpBufferActive = false;
-            PlayerAnimator.StartCoroutine("HardLandingCoroutine");
-            PlayerWallSlide.StartCoroutine("WallSlideCountDown");
-            print("set air attributes");
-        }
-
+        
         public void SetGravity(float amt)
         {
             Rb.gravityScale = amt;
-            print(amt);
         }
-
-        private void FallVelocityClamp()
-        {
-            if (Rb.velocity.y < MaxFallSpeed)
-                Rb.velocity = new Vector2(Rb.velocity.x, MaxFallSpeed);
-        }
-        private void CheckYVelocity()
-        {
-            if (Rb.velocity.y < -1 || !PlayerJump.IsJumpPressed && PlayerJump.HasJumped && PlayerJump.ApplyForceOnJumpRelease && PlayerJump.HasApexModifier || !PlayerJump.IsJumpPressed && PlayerJump.HasJumped && PlayerJump.ApplyForceOnJumpRelease && PlayerJump.IsApexModifierComplete)
-                SetGravity(fallGravityScale);
-        }
+  
         private void OnDrawGizmos()
         {
             //Ground check
@@ -353,12 +422,12 @@ namespace WibertStudio
             if (!isOnMiddleGround())
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawRay(new Vector2(transform.position.x + middleGroundCheckOffset.x, transform.position.y + middleGroundCheckOffset.y), -transform.up * groundCheckDistance);
+                Gizmos.DrawRay(new Vector2(transform.position.x + middleGroundCheckOffSet.x, transform.position.y + middleGroundCheckOffSet.y), -transform.up * groundCheckDistance);
             }
             else
             {
                 Gizmos.color = Color.green;
-                Gizmos.DrawRay(new Vector2(transform.position.x + middleGroundCheckOffset.x, transform.position.y + middleGroundCheckOffset.y), -transform.up * groundCheckDistance);
+                Gizmos.DrawRay(new Vector2(transform.position.x + middleGroundCheckOffSet.x, transform.position.y + middleGroundCheckOffSet.y), -transform.up * groundCheckDistance);
             }
 
             if (!isOnRightGround())
@@ -458,4 +527,3 @@ namespace WibertStudio
             }
         }
     }
-}

@@ -9,7 +9,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     public Animator animator;
     private PlayerManager playerManager;
-    private PlayerWallSlideState wallSlideState;
+    private PlayerWallSlide_WallJump wallSlideState;
     [SerializeField] private float yVFXOffSet;
     [SerializeField] private MMF_Player HardLandingFeedBack;
     [SerializeField] private float minSpeedToDoStopAnim;
@@ -46,7 +46,7 @@ public class PlayerAnimator : MonoBehaviour
     private void Start()
     {
         playerManager = GetComponent<PlayerManager>();
-        wallSlideState = GetComponent<PlayerWallSlideState>();
+        wallSlideState = GetComponent<PlayerWallSlide_WallJump>();
     }
 
     private void Update()
@@ -58,7 +58,7 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("IsRunStopping", isRunStopping);
         animator.SetBool("IsTurning", isTurning);
         animator.SetBool("IsDashing", isDashing);
-       // animator.SetBool("IsWallSliding", wallSlideState.isSlidingOnWall);
+        animator.SetBool("IsWallSliding", wallSlideState.isSlidingOnWall);
         animator.SetBool("WillDoHardLanding", willDoHardLanding);
         animator.SetBool("IsWallContactComplete", isWallContactComplete);
         animator.SetBool("IsDoingWallJump", isWallJumping);
@@ -100,12 +100,12 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         // Wall contact
-        //if (!wallSlideState.isSlidingOnWall)
-        //    isWallContactComplete = false;
-        //if (wallSlideState.isSlidingOnWall && !isWallContactComplete)
-        //{
-        //    StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("WallContact")));
-        //}
+        if (!wallSlideState.isSlidingOnWall)
+            isWallContactComplete = false;
+        if (wallSlideState.isSlidingOnWall && !isWallContactComplete)
+        {
+            StartCoroutine(AnimationTimer(clipDictionary.GetValueOrDefault("WallContact")));
+        }
     }
 
     public void CheckLandAnimation()
@@ -174,10 +174,6 @@ public class PlayerAnimator : MonoBehaviour
         if (isDashing)
             return;
 
-        if (!playerManager.IsGrounded)
-        {
-            StartCoroutine(HardLandingCoroutine());
-        }
         StopAllCoroutines();
         ResetAnimations();
         isDashing = true;

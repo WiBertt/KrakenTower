@@ -2,138 +2,167 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
-using Unity.VisualScripting;
+using Sirenix.OdinInspector;
+using WibertStudio;
 
-namespace WibertStudio
+[RequireComponent(typeof(PlayerManager))]
+public class PlayerMove : MonoBehaviour
 {
-    [RequireComponent(typeof(PlayerManager))]
-    public class PlayerMove : MonoBehaviour
+    // references
+    private PlayerManager playerManager;
+    private PlayerAnimator animator;
+    private Player player;
+
+    #region Movement variables
+    [BoxGroup("Base Parameters")]
+    [SerializeField] private float baseMoveSpeed;
+    [BoxGroup("Base Parameters")]
+    [PropertyTooltip("The move speed of the player while attacking")]
+    [SerializeField] private float moveAttackSpeed;
+    [BoxGroup("Base Parameters")]
+    [PropertyTooltip("How long the player is affected by the attack move speed slow")]
+    [SerializeField] private float moveSpeedAttackSlowDuration;
+    [BoxGroup("Physics")]
+    [PropertyTooltip("How fast the player reaches their max move speed on the ground and in air")]
+    [SerializeField] private float acceleration;
+    [BoxGroup("Physics")]
+    [PropertyTooltip("How fast the player slows down on the ground")]
+    [SerializeField] private float groundDecceleration;
+    [BoxGroup("Physics")]
+    [PropertyTooltip("How fast the player slows down in the air")]
+    [SerializeField] private float airDecceleration;
+    [BoxGroup("Physics")]
+    [PropertyTooltip("Controls how much of an influence the velocity adds to the equation. SHOULD BE FINE DO NOT TAMPER!")]
+    [SerializeField] private float velPower;
+    [BoxGroup("Physics")]
+    [PropertyTooltip("Artificial friction added to the player while on the ground")]
+    [SerializeField] private float groundFriction;
+    [BoxGroup("Physics")]
+    [PropertyTooltip("Artificial friction added to the player while in the air")]
+    [SerializeField] private float airFriction;
+    #region Holders / Debug Variables
+    [FoldoutGroup("Debug")]
+    [ReadOnly]
+    public float initialMoveSpeed;
+    [FoldoutGroup("Debug")]
+    [ReadOnly]
+    [ShowInInspector]
+    private float deceleration;
+    [FoldoutGroup("Debug")]
+    [ReadOnly]
+    [ShowInInspector]
+    private float friction;
+    [FoldoutGroup("Debug")]
+    [ReadOnly]
+    public float horizontalInput;
+    [FoldoutGroup("Debug")]
+    [ReadOnly]
+    public float currentMoveSpeed;
+    [FoldoutGroup("Debug")]
+    [ReadOnly]
+    #endregion
+    public bool isAttackMoveSlowActive;
+    public bool IsCoroutineActive { get; set; }
+    #endregion
+
+    private void Start()
     {
-        private PlayerManager playerManager;
-        private PlayerAnimator animator;
-        private Player player;
+        playerManager = GetComponent<PlayerManager>();
+        animator = GetComponent<PlayerAnimator>();
 
-        [SerializeField] private ParticleSystem playerDustParticles;
+        player = playerManager.Player;
 
+        currentMoveSpeed = baseMoveSpeed;
+        initialMoveSpeed = baseMoveSpeed;
+    }
 
-        #region Movement variables
-        [Header("Movement Variables")]
-        [Tooltip("Base move speed of the player")]
-        [SerializeField] private float baseMoveSpeed;
-        [SerializeField] private float moveAttackSpeed;
-        [SerializeField] private float moveSpeedAttackSlowDuration;
-        [SerializeField] private float acceleration;
-        [SerializeField] private float groundDecceleration;
-        [SerializeField] private float airDecceleration;
-        [SerializeField] private float velPower;
-        [SerializeField] private float groundFriction;
-        [SerializeField] private float airFriction;
+    public void SetGroundValues()
+    {
+        deceleration = groundDecceleration;
+        friction = groundFriction;
+    }
 
-        public float initialMoveSpeed;
-        private float deceleration;
-        private float friction;
-        public float horizontalInput { get; set; }
-        public float moveSpeed { get; set; }
-        #endregion
-        public bool isAttackMoveSlowActive { get; set; }
-        public bool IsCoroutineActive { get; set; }
+    public void SetAirValues()
+    {
+        deceleration = airDecceleration;
+        friction = airFriction;
+    }
 
-        private void Start()
+    public void Update()
+    {
+        PlayerInput();
+    }
+
+    private void PlayerInput()
+    {
+        if (!playerManager.DoesPlayerHaveControl)
+            return;
+
+        horizontalInput = player.GetAxis("Move Horizontal");
+    }
+
+    public void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void Move()
+    {
+        if (!playerManager.DoesPlayerHaveControl)
+            return;
+
+        // movement equations
+        float targetSpeed = horizontalInput * currentMoveSpeed;
+        float speedDif = targetSpeed - playerManager.Rb.velocity.x;
+
+        float accelRate = (Mathf.Abs(targetSpeed) > .01f) ? acceleration : deceleration;
+
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+
+        playerManager.Rb.AddForce(movement * Vector2.right);
+
+        if (playerManager.Rb.velocity.x > .01f || playerManager.Rb.velocity.x < -.01f && playerManager.IsGrounded)
         {
-            playerManager = GetComponent<PlayerManager>();
-            animator = GetComponent<PlayerAnimator>();
-
-            player =  playerManager.Player;
-
-            moveSpeed = baseMoveSpeed;
-            initialMoveSpeed = baseMoveSpeed;
-        }
-        public void SetGroundValues()
-        {
-            deceleration = groundDecceleration;
-            friction = groundFriction;
-        }
-        public void SetAirValues()
-        {
-            deceleration = airDecceleration;
-            friction = airFriction;
-        }
-        public void Update()
-        {
-            PlayerInput();
-            //Particles
-            if (playerManager.Rb.velocity.x > 0 && playerManager.Rb.velocity.x < .5f && playerManager.IsGrounded)
-                playerDustParticles.Play();
-        }
-
-        private void PlayerInput()
-        {
-            if (!playerManager.DoesPlayerHaveControl)
-                return;
-
-            horizontalInput = player.GetAxis("Move Horizontal");
-        }
-
-        public void FixedUpdate()
-        {
-            Move();
-        }
-
-        private void Move()
-        {
-            if (!playerManager.DoesPlayerHaveControl)
-                return;
-
-            float targetSpeed = horizontalInput * moveSpeed;
-            float speedDif = targetSpeed - playerManager.Rb.velocity.x;
-
-            float accelRate = (Mathf.Abs(targetSpeed) > .01f) ? acceleration : deceleration;
-
-            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
-
-            playerManager.Rb.AddForce(movement * Vector2.right);
-
-            if (playerManager.Rb.velocity.x > .01f || playerManager.Rb.velocity.x < -.01f && playerManager.IsGrounded)
+            if (!IsCoroutineActive)
             {
-                if (!IsCoroutineActive)
-                {
-                    IsCoroutineActive = true;
-                }
-            }
-
-            // Friction
-            if (Mathf.Abs(horizontalInput) == 0)
-            {
-                float amount = Mathf.Min(Mathf.Abs(playerManager.Rb.velocity.x), Mathf.Abs(friction));
-
-                amount *= Mathf.Sign(playerManager.Rb.velocity.x);
-
-                playerManager.Rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+                IsCoroutineActive = true;
             }
         }
 
-        public void ChangeMoveSpeed(float newMoveSpeed)
+        // Friction
+        if (Mathf.Abs(horizontalInput) == 0)
         {
-            baseMoveSpeed = newMoveSpeed;
+            float amount = Mathf.Min(Mathf.Abs(playerManager.Rb.velocity.x), Mathf.Abs(friction));
+
+            amount *= Mathf.Sign(playerManager.Rb.velocity.x);
+
+            playerManager.Rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
         }
+    }
 
-        public IEnumerator AttackSlow()
-        {
-            if (!playerManager.IsGrounded)
-                yield break;
+    public void ChangeMoveSpeed(float newMoveSpeed)
+    {
+        baseMoveSpeed = newMoveSpeed;
+    }
 
-            isAttackMoveSlowActive = true;
-            print("here");
-            moveSpeed = moveAttackSpeed;
-            yield return new WaitForSecondsRealtime(moveSpeedAttackSlowDuration);
-            moveSpeed = baseMoveSpeed;
-            isAttackMoveSlowActive = false;
-        }
+    public IEnumerator AttackSlow()
+    {
+        if (!playerManager.IsGrounded)
+            yield break;
 
-        public void ResetMoveSpeed()
-        {
-            baseMoveSpeed = initialMoveSpeed;
-        }
+        isAttackMoveSlowActive = true;
+        print("here");
+        currentMoveSpeed = moveAttackSpeed;
+        yield return new WaitForSecondsRealtime(moveSpeedAttackSlowDuration);
+        currentMoveSpeed = baseMoveSpeed;
+        isAttackMoveSlowActive = false;
+    }
 
+    /// <summary>
+    /// sets move speed back to its initial value
+    /// </summary>
+    public void ResetMoveSpeed()
+    {
+        baseMoveSpeed = initialMoveSpeed;
     }
 }
