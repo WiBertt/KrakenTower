@@ -151,7 +151,6 @@ public class PlayerMove : MonoBehaviour
             yield break;
 
         isAttackMoveSlowActive = true;
-        print("here");
         currentMoveSpeed = moveAttackSpeed;
         yield return new WaitForSecondsRealtime(moveSpeedAttackSlowDuration);
         currentMoveSpeed = baseMoveSpeed;
